@@ -34,8 +34,10 @@ document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
 let score = 0;
+// pohranjujemo najbolji rezultat u local storage
 let bestScore = localStorage.getItem('bestScore') ? parseInt(localStorage.getItem('bestScore')) : 0;
 
+// ispisuje rezultat(e) u gornjem desnom kutu
 function drawScore() {
     ctx.font = '20px Arial';
     ctx.fillStyle = 'black';
@@ -60,6 +62,7 @@ function keyUpHandler(e) {
     }
 }
 
+// pomiče palicu lijevo-desno ovisno o pritisku tipke lijevo-desno
 function moveBat() {
     if (rightPressed && batX < canvas.width - batWidth) {
         batX += 7; 
@@ -121,6 +124,7 @@ function drawBricks() {
     for (let i = 0; i < brickColumnCount; i++) {
         for (let j = 0; j < brickRowCount; j++) {
             if (bricks[i][j].status === 1) {
+                // izračun koordinata cigli
                 const brickX = (i * (brickWidth + brickPadding)) + brickOffsetLeft;
                 const brickY = (j * (brickHeight + brickPadding)) + brickOffsetTop;
                 bricks[i][j].x = brickX;
